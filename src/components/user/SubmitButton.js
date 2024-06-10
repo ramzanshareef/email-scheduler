@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useFormStatus } from "react-dom";
 
-export function SubmitButton({ title, size }) {
+export function SubmitButton({ title, size, icon }) {
     const { pending } = useFormStatus();
 
     return (
@@ -13,11 +13,18 @@ export function SubmitButton({ title, size }) {
                 `}
                 disabled={pending}
             >
-                <p
-                    className={` ${pending === true ? "hidden" : ""} `}
+                <div
+                    className={`flex justify-center gap-x-2 ${pending === true ? "hidden" : ""}`}
                 >
-                    {title}
-                </p>
+                    <p
+                        className={` ${pending === true ? "hidden" : ""} `}
+                    >
+                        {title}
+                    </p>
+                    <div className={` ${icon === undefined ? "hidden" : ""} `}>
+                        {icon}
+                    </div>
+                </div>
                 <div className={` ${pending === true ? "flex justify-center items-center" : "hidden"}  `}>
                     <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white">
                     </div>
@@ -29,5 +36,6 @@ export function SubmitButton({ title, size }) {
 
 SubmitButton.propTypes = {
     title: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired
+    size: PropTypes.string.isRequired,
+    icon: PropTypes.reactNode
 };

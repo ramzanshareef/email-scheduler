@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Auth NextJS Boilerplate",
+    title: "Email Scheduler",
     description: "A NextJS Auth boilerplate developed by Mohd Ramzan Shareef",
 };
 
