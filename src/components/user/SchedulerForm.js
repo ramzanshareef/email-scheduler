@@ -112,17 +112,20 @@ const SchedulerForm = () => {
                                     <input
                                         id="date"
                                         name="date"
-                                        type="date"
+                                        type="datetime-local"
                                         required
-                                        min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 p-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:opacity-50"
+                                        // min={getMinDateTime()}
+                                        className="block w-fit rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 p-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:opacity-50"
                                     />
                                 </div>
                             </div>
-                            <div>
+                            <div className="flex justify-between items-center" >
                                 <SubmitButton title="Schedule" size="fit"
                                     icon={<SchedulerIcon />}
                                 />
+                                <button type="reset" className="inline-flex justify-center w-fit rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:text-sm sm:leading-5" >
+                                    Clear Form
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -138,4 +141,17 @@ const SchedulerIcon = () => {
     return (
         <RiCalendarScheduleLine className="w-6 h-6" />
     );
+};
+
+const getMinDateTime = () => {
+    const now = new Date();
+    now.setHours(now.getHours() + 24);
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
 };

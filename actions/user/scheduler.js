@@ -14,6 +14,14 @@ export async function scheduleEmail(currentState, formData) {
     if (titleOfMail === "" || message === "" || date === "" || email === "") {
         return { status: 400, message: "All fields are required" };
     }
+    let emailDomain = email.split("@")[1];
+    const allowedDomains = ["gmail.com", "yahoo.com", "hotmail.com"];
+    if (!allowedDomains.includes(emailDomain)) {
+        return {
+            status: 400,
+            message: "Only Gmail, Yahoo, and Hotmail are allowed",
+        };
+    }
     else {
         try {
             await connectDB();
@@ -25,8 +33,8 @@ export async function scheduleEmail(currentState, formData) {
             });
             await newSchedule.save();
 
-            const expiryDate = dateConvrtorForExpiry(newSchedule.date);
-            const scheduleDate = convertDateString(expiryDate);
+            const expiryDate = getExpiryDate(newSchedule.date);
+            const scheduleDate = dateStringConverter(newSchedule.date);
 
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -37,14 +45,15 @@ export async function scheduleEmail(currentState, formData) {
                     "url": SERVER_URL + "/api/sendEmail?scheduleId=" + newSchedule._id,
                     "enabled": "true",
                     "schedule": {
-                        "timezone": "Indian/Maldives",
+                        "timezone": "Asia/Kolkata",
                         "expiresAt": expiryDate,
-                        "hours": scheduleDate.hours,
-                        "mdays": scheduleDate.mdays,
-                        "minutes": scheduleDate.minutes,
-                        "months": scheduleDate.months,
-                        "wdays": scheduleDate.wdays
-                    }
+                        "hours": [scheduleDate.hours],
+                        "mdays": [scheduleDate.mdays],
+                        "minutes": [scheduleDate.minutes],
+                        "months": [scheduleDate.months],
+                        "wdays": [-1]
+                    },
+                    "requestMethod": "POST"
                 }
             });
 
@@ -71,29 +80,20 @@ export async function scheduleEmail(currentState, formData) {
     }
 }
 
-function dateConvrtorForExpiry(date) {
-    const year = date.getUTCFullYear();
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const hours = String(date.getUTCHours()).padStart(2, "0");
-    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-    const seconds = String(date.getUTCSeconds()).padStart(2, "0");
-    return `${year}${month}${day}${hours}${minutes}${seconds}`;
+function dateStringConverter(dateString) {
+    const hours = dateString.substring(11, 13);
+    const mdays = dateString.substring(8, 10);
+    const minutes = dateString.substring(14, 16);
+    const months = dateString.substring(5, 7);
+    return { hours, mdays, minutes, months };
 }
 
-function convertDateString(dateString) {
-    const month = parseInt(dateString.substring(4, 6));
-    const day = parseInt(dateString.substring(6, 8));
-    const hour = parseInt(dateString.substring(8, 10));
-    const minute = parseInt(dateString.substring(10, 12));
-
-    const result = {
-        hours: [hour],
-        mdays: [day],
-        minutes: [minute],
-        months: [month],
-        wdays: [-1]
-    };
-
-    return result;
+function getExpiryDate(dateString) {
+    const year = dateString.substring(0, 4);
+    const month = dateString.substring(5, 7);
+    const day = dateString.substring(8, 10);
+    const hours = dateString.substring(11, 13);
+    const minutes = (parseInt(dateString.substring(14, 16)) + 5).toString();
+    const seconds = "00";
+    return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
