@@ -1,3 +1,4 @@
+import moment from "moment";
 import { getUserSchedules } from "../../../../actions/user/data";
 
 export const SchedulesCardsServer = async () => {
@@ -31,7 +32,7 @@ export const SchedulesCardsServer = async () => {
                                 <span className="text-sm mr-2">📧</span>
                                 <p className="text-sm italic">{schedule.email}</p>
                             </div>
-                            <div className="border border-gray-300 rounded p-2 bg-white mt-2 shadow-sm">
+                            <div className="border border-gray-300 rounded p-2 bg-white mt-2 shadow-sm break-words whitespace-normal">
                                 <p className="text-sm text-gray-700">
                                     {truncateMessage(schedule.message, 60)}
                                 </p>
@@ -46,14 +47,7 @@ export const SchedulesCardsServer = async () => {
                                     : schedule.emailStatus === "scheduled"
                                         ? "🕒 Scheduled"
                                         : "😞 Failed"}{" "}
-                                at {new Date(schedule.date).toLocaleDateString("en-US", {
-                                    timeZone: "Asia/Kolkata",
-                                    dateStyle: "medium",
-                                })}{" "}
-                                {new Date(schedule.date).toLocaleTimeString("en-US", {
-                                    timeZone: "Asia/Kolkata",
-                                    timeStyle: "short",
-                                })}
+                                at {moment(schedule.date).format("DD MMM YYYY, hh:mm a")}
                             </p>
                         </div>
                     </div>
