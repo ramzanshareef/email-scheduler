@@ -94,5 +94,6 @@ function getExpiryDate(dateString) {
     const hours = dateString.substring(11, 13);
     const minutes = (parseInt(dateString.substring(14, 16)) + 5).toString();
     const seconds = "00";
+    console.log("Year: ", year, "Month: ", month, "Day: ", day, "Hours: ", hours, "Minutes: ", minutes, "Seconds: ", seconds);
     return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }

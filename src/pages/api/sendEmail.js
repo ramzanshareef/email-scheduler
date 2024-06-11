@@ -4,6 +4,7 @@ import Schedule from "../../../models/Schedule";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 let cornJobSchedulerURL = process.env.CRON_JOB_SCHEDULER_URL;
+const SENDER_EMAIL = process.env.SENDER_EMAIL;
 
 export default async function handler(req, res) {
     try {
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
         }
 
         const { error } = await resend.emails.create({
-            from: "Remainders <remainders@ramzanshareef.me>",
+            from: "Remainders <" + SENDER_EMAIL + ">",
             to: email,
             subject: titleOfMail,
             html: EmailTemplate(message),
