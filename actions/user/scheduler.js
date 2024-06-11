@@ -52,8 +52,7 @@ export async function scheduleEmail(currentState, formData) {
                         "minutes": [scheduleDate.minutes],
                         "months": [scheduleDate.months],
                         "wdays": [-1]
-                    },
-                    "requestMethod": "POST"
+                    }
                 }
             });
 

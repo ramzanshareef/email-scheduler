@@ -7,7 +7,7 @@ let cornJobSchedulerURL = process.env.CRON_JOB_SCHEDULER_URL;
 
 export default async function handler(req, res) {
     try {
-        if (req.method === "GET") {
+        if (req.method !== "GET") {
             return res.status(400).json({ message: "Invalid request" });
         }
         const scheduleId = req.query.scheduleId;
