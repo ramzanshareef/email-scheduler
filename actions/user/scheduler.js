@@ -1,7 +1,9 @@
 "use server";
 
+import { getSession } from "@/lib/session";
 import Schedule from "../../models/Schedule";
 import connectDB from "../connectDB";
+import { revalidatePath } from "next/cache";
 
 let cornJobSchedulerURL = process.env.CRON_JOB_SCHEDULER_URL;
 let SERVER_URL = process.env.SERVER_URL;
@@ -25,11 +27,13 @@ export async function scheduleEmail(currentState, formData) {
     else {
         try {
             await connectDB();
+            const session = await getSession();
             let newSchedule = await Schedule.create({
                 email: email,
                 titleOfMail: titleOfMail,
                 message: message,
                 date: date,
+                userID: session.user.id,
             });
             await newSchedule.save();
 
@@ -70,6 +74,7 @@ export async function scheduleEmail(currentState, formData) {
             }
             else {
                 await Schedule.findByIdAndUpdate(newSchedule._id, { cronJobID: response.jobId });
+                revalidatePath("/dashboard");
                 return { status: 200, message: "Email scheduled successfully" };
             }
         }

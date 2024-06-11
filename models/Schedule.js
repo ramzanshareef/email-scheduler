@@ -20,6 +20,14 @@ const scheduleSchema = new mongoose.Schema({
     cronJobID: {
         type: String,
     },
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+    },
+    emailStatus: {
+        type: String,
+        default: "scheduled"
+    },
 });
 
 export default mongoose.models.schedule || mongoose.model("schedule", scheduleSchema);

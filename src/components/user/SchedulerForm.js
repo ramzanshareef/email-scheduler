@@ -47,9 +47,9 @@ const SchedulerForm = () => {
     return (
         <>
             <div className="w-3/5 mx-auto">
-                <div className="flex flex-col justify-center px-6 py-12 lg:px-8">
+                <div className="flex flex-col justify-center p-6">
                     <div className="min-w-full">
-                        <form action={submitAction} className="space-y-6" id="subscribeForm">
+                        <form action={submitAction} className="space-y-3" id="subscribeForm">
                             <div>
                                 <label
                                     htmlFor="email"
@@ -115,15 +115,15 @@ const SchedulerForm = () => {
                                         type="datetime-local"
                                         required
                                         min={getMinDateTime()}
-                                        className="block w-fit rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 p-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:opacity-50"
+                                        className="block w-fit rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 p-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:opacity-50 max-sm:w-full"
                                     />
                                 </div>
                             </div>
-                            <div className="flex justify-between items-center" >
+                            <div className="flex max-sm:flex-col max-sm:gap-y-2 sm:flex-row justify-between">
                                 <SubmitButton title="Schedule" size="fit"
                                     icon={<SchedulerIcon />}
                                 />
-                                <button type="reset" className="inline-flex justify-center w-fit rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:text-sm sm:leading-5" >
+                                <button type="reset" className="flex justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 w-fit" >
                                     Clear Form
                                 </button>
                             </div>

@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         if (response.status !== 200) {
             return res.status(500).json({ message: "Internal server error" });
         }
-        await Schedule.findByIdAndDelete(scheduleId);
+        await Schedule.findByIdAndUpdate(scheduleId, { emailStatus: "sent" });
 
         return res.status(200).json({ message: "Email sent successfully" });
     }
@@ -59,19 +59,20 @@ export default async function handler(req, res) {
 
 const EmailTemplate = (message) => {
     return `<html>
-            <head></head>
-            <body style="font-family: Arial, sans-serif; padding: 0; margin: 0;">
-                <div style="padding: 20px; margin: 0 auto; max-width: 600px; background-color: #f0f8ff; border: 1px solid #ccc; border-radius: 8px;">
-                    <div style="background-color: #4CAF50; padding: 10px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        <h1 style="color: white; margin: 0;">Remainders</h1>
-                    </div>
-                    <div style="padding: 20px; background-color: white;">
-                        <p style="font-size: 16px; color: #333;">${message}</p>
-                    </div>
-                    <div style="background-color: #4CAF50; padding: 10px; text-align: center; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-                        <p style="color: white; margin: 0;">&copy; 2024 Remainders</p>
-                    </div>
-                </div>
-            </body>
-        </html>`;
+    <head></head>
+    <body style="font-family: Arial, sans-serif; padding: 0; margin: 0; background-color: #e8f4fc;">
+        <div style="padding: 20px; margin: 0 auto; max-width: 600px; background-color: #ffffff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <div style="background-color: #4CAF50; padding: 15px; text-align: center; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <h1 style="color: white; margin: 0; font-size: 24px;">Remainders</h1>
+            </div>
+            <div style="padding: 25px; background-color: white;">
+                <p style="font-size: 18px; color: #333; line-height: 1.6; margin: 0;">${message}</p>
+            </div>
+            <div style="background-color: #4CAF50; padding: 15px; text-align: center; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <p style="color: white; margin: 0; font-size: 14px;">&copy; 2024 Remainders</p>
+            </div>
+        </div>
+    </body>
+    </html>
+`;
 };
