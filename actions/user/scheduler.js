@@ -37,7 +37,6 @@ export async function scheduleEmail(currentState, formData) {
             });
             await newSchedule.save();
 
-            const expiryDate = getExpiryDate(newSchedule.date);
             const scheduleDate = dateStringConverter(newSchedule.date);
 
             const myHeaders = new Headers();
@@ -50,7 +49,7 @@ export async function scheduleEmail(currentState, formData) {
                     "enabled": "true",
                     "schedule": {
                         "timezone": "Asia/Kolkata",
-                        "expiresAt": expiryDate,
+                        "expiresAt": 0,
                         "hours": [scheduleDate.hours],
                         "mdays": [scheduleDate.mdays],
                         "minutes": [scheduleDate.minutes],
@@ -90,14 +89,4 @@ function dateStringConverter(dateString) {
     const minutes = dateString.substring(14, 16);
     const months = dateString.substring(5, 7);
     return { hours, mdays, minutes, months };
-}
-
-function getExpiryDate(dateString) {
-    const year = dateString.substring(0, 4);
-    const month = dateString.substring(5, 7);
-    const day = dateString.substring(8, 10);
-    const hours = (parseInt(dateString.substring(11, 13)) + 1).toString();
-    const minutes = dateString.substring(14, 16);
-    const seconds = "00";
-    return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
