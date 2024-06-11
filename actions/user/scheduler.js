@@ -91,7 +91,7 @@ function getExpiryDate(dateString) {
     const year = dateString.substring(0, 4);
     const month = dateString.substring(5, 7);
     const day = dateString.substring(8, 10);
-    const hours = dateString.substring(11, 13);
+    let hours = dateString.substring(11, 13);
     let minutesHandle = parseInt(dateString.substring(14, 16)) + 5;
     let minutes = minutesHandle.toString();
     if (minutesHandle >= 60) {
