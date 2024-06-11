@@ -21,7 +21,6 @@ export default async function handler(req, res) {
             return res.status(404).json({ message: "Schedule not found" });
         }
         const { email, titleOfMail, message, cronJobID, date } = schedulerDocument;
-        console.log(new Date(date), new Date());
         if (new Date(date) > new Date(new Date().getTime() + 330 * 60000)) {
             return res.status(400).json({ message: "Cannot send email before scheduled time" });
         }
