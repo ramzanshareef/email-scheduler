@@ -46,8 +46,14 @@ export const SchedulesCardsServer = async () => {
                                     : schedule.emailStatus === "scheduled"
                                         ? "🕒 Scheduled"
                                         : "😞 Failed"}{" "}
-                                at {new Date(schedule.date).toLocaleDateString()}{" "}
-                                {new Date(schedule.date).toLocaleTimeString()}
+                                at {new Date(schedule.date).toLocaleDateString("en-US", {
+                                    timeZone: "Asia/Kolkata",
+                                    dateStyle: "medium",
+                                })}{" "}
+                                {new Date(schedule.date).toLocaleTimeString("en-US", {
+                                    timeZone: "Asia/Kolkata",
+                                    timeStyle: "short",
+                                })}
                             </p>
                         </div>
                     </div>
