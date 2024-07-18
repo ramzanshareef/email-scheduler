@@ -1,6 +1,4 @@
-# Email Scheduler
-
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Framzan-email-scheduler.vercel.app)](https://ramzan-email-scheduler.vercel.app)
+# 📢 Email Scheduler
 
 **Email Scheduler** is a cutting-edge web application designed to enhance your productivity and organization. Whether you need to remember important dates, send reminders, or share information at just the right time, Email Scheduler has you covered. 
 
@@ -13,11 +11,11 @@ Imagine never forgetting a birthday, meeting, or deadline again. With Email Sche
 
 Our intuitive interface allows users to easily log in and manage their scheduled emails. The application leverages the power of **Next.js** for smooth, server-rendered user experiences, **Resend** for reliable email delivery, **Cron Jobs** for precise scheduling, and **MongoDB** for robust data management.
 
-## Live Demo
+## 🌐 Live Demo
 
 Check out the live demo [here](https://ramzan-email-scheduler.vercel.app).
 
-## Features
+## 🚀 Features
 
 - User authentication
 - Schedule emails for future dates and times
@@ -26,14 +24,14 @@ Check out the live demo [here](https://ramzan-email-scheduler.vercel.app).
 - Cron jobs for accurate scheduling
 - MongoDB for data storage
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Next.js**: Framework for development
 - **Resend**: Service for sending emails
 - **Cron Jobs**: Scheduling emails
 - **MongoDB**: Database for storing user and email data
 
-## Installation
+## ⬇️ Installation
 
 To set up the project locally, follow these steps:
 
@@ -67,13 +65,13 @@ To set up the project locally, follow these steps:
     ```
     Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Usage
+## 📝 Usage
 
 1. **Log In**: Create an account or log in to your existing account.
 2. **Schedule an Email**: Navigate to the scheduling page, fill in the recipient's email, the subject, the body, and the date and time you want the email to be sent.
 3. **Manage Scheduled Emails**: View and manage your scheduled emails from your dashboard.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
 
@@ -83,7 +81,7 @@ Contributions are welcome! Please follow these steps to contribute:
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a pull request
 
-## Contact
+## 👉 Contact
 
 For any inquiries or feedback, please reach out to:
 - **Name**: Mohd Ramzan Shareef
