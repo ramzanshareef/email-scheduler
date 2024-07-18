@@ -2,8 +2,6 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Framzan-email-scheduler.vercel.app)](https://ramzan-email-scheduler.vercel.app)
 
-## Description
-
 **Email Scheduler** is a cutting-edge web application designed to enhance your productivity and organization. Whether you need to remember important dates, send reminders, or share information at just the right time, Email Scheduler has you covered. 
 
 Imagine never forgetting a birthday, meeting, or deadline again. With Email Scheduler, you can effortlessly schedule emails to be sent at a future date and time, ensuring that your messages are delivered exactly when they need to be. This makes it ideal for a variety of scenarios, such as:
