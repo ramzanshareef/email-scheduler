@@ -88,4 +88,4 @@ Contributions are welcome! Please follow these steps to contribute:
 For any inquiries or feedback, please reach out to:
 - **Name**: Mohd Ramzan Shareef
 - **Email**: mail.ramzanshareef@gmail.com
-- **GitHub**: [itisRamzan](https://github.com/itisRamzan)
+- **GitHub**: [ramzanshareef](https://github.com/ramzanshareef)
